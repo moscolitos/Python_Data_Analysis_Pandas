@@ -1,0 +1,55 @@
+How do you get the column names of a DataFrame as a list?
+
+**Question:**
+How do you get the column names of a DataFrame as a list in pandas?
+
+---
+
+**Getting Column Names of a DataFrame as a List in Pandas**
+
+When working with pandas DataFrames, it's common to need a list of column names for various operations, such as data manipulation, visualization, or modeling. This tutorial will demonstrate how to retrieve the column names of a DataFrame as a list, providing detailed explanations and coding examples.
+
+**Introduction**
+
+In pandas, a DataFrame is a two-dimensional labeled data structure with columns of potentially different data types. Each column in a DataFrame has a unique name, which is essential for accessing and manipulating the data. There are several methods to retrieve the column names of a DataFrame as a list, depending on your specific requirements and preferences.
+
+**Getting Column Names as a List**
+
+To obtain the column names of a DataFrame as a list in pandas, you can use the `columns` attribute or the `tolist()` method. Both methods provide straightforward ways to extract the column names and convert them into a list format.
+
+**Example: Getting Column Names as a List**
+
+Let's illustrate this process with an example using the Titanic dataset:
+
+```python
+import pandas as pd
+
+# Load the dataset into a DataFrame
+url = "https://raw.githubusercontent.com/moscolitos/titanic-dataset/main/Titanic-Dataset.csv"
+df = pd.read_csv(url)
+
+# Method 1: Using the 'columns' attribute
+column_names_1 = df.columns.tolist()
+
+# Method 2: Using the 'tolist()' method
+column_names_2 = list(df.columns)
+
+print("Column Names (Method 1):", column_names_1)
+print("Column Names (Method 2):", column_names_2)
+```
+
+In this example:
+- We first load the Titanic dataset into a DataFrame `df` using the `pd.read_csv()` function.
+- We then use two different methods to obtain the column names as lists:
+  - Method 1: We access the `columns` attribute of the DataFrame and apply the `tolist()` method to convert it into a list.
+  - Method 2: We directly convert the `columns` attribute into a list using the `list()` function.
+- Finally, we print the column names obtained from both methods.
+
+**Understanding the Methods**
+
+- `columns`: Attribute of a DataFrame that returns a pandas Index object containing the column names.
+- `tolist()`: Method to convert an Index object or array-like structure into a Python list.
+
+**Conclusion**
+
+Retrieving the column names of a DataFrame as a list is a fundamental operation in pandas data analysis. By using either the `columns` attribute or the `tolist()` method, you can quickly obtain a list of column names for further processing or analysis. Understanding how to access column names programmatically allows you to streamline your data manipulation workflows and perform tasks more efficiently.

@@ -1,0 +1,54 @@
+How do you calculate the geometric mean of a column?
+
+**Question:**
+How do you calculate the geometric mean of a column in pandas?
+
+---
+
+**Calculating the Geometric Mean of a Column in Pandas**
+
+The geometric mean is a measure of central tendency that is particularly useful when dealing with datasets containing exponential growth or decay. In pandas, we can easily calculate the geometric mean of a column using built-in functions. In this tutorial, we'll explore how to compute the geometric mean of a column in pandas, a powerful data manipulation library in Python.
+
+**Introduction**
+
+The geometric mean is the nth root of the product of n numbers. It is often used to calculate the average growth rate, compound interest, or other situations where values are multiplied together over time. In pandas, we can leverage mathematical functions to calculate the geometric mean of a column efficiently. This measure provides valuable insights into the central tendency of a dataset, especially when dealing with exponential data.
+
+**Loading the Titanic Dataset**
+
+Before we proceed, let's load the Titanic dataset, which contains information about passengers aboard the Titanic. We'll use this dataset to demonstrate how to calculate the geometric mean of a column.
+
+```python
+import pandas as pd
+
+# Load the Titanic dataset
+url = "https://raw.githubusercontent.com/moscolitos/titanic-dataset/main/Titanic-Dataset.csv"
+titanic_data = pd.read_csv(url)
+
+# Display the first few rows of the dataset
+print(titanic_data.head())
+```
+
+**Calculating the Geometric Mean**
+
+To calculate the geometric mean of a column in pandas, we can use the `scipy.stats` module.
+
+```python
+from scipy.stats import gmean
+
+# Calculate the geometric mean of the 'Fare' column
+geometric_mean = gmean(titanic_data['Fare'])
+
+print("Geometric Mean of the 'Fare' Column:", geometric_mean)
+```
+
+In this code snippet:
+- We import the `gmean` function from the `scipy.stats` module.
+- We use the `gmean()` function to calculate the geometric mean of the 'Fare' column in the DataFrame `titanic_data`.
+
+**Understanding the Parameters**
+
+- `titanic_data['Fare']`: Specifies the column for which we want to calculate the geometric mean.
+
+**Conclusion**
+
+In this tutorial, we learned how to calculate the geometric mean of a column in pandas. By using the `gmean()` function from the `scipy.stats` module, we can efficiently compute the geometric mean of a column in our DataFrame. The geometric mean provides valuable insights into the central tendency of exponential data, making it a useful measure in various analytical scenarios. With pandas and scipy, calculating the geometric mean of a column is straightforward, allowing us to gain deeper insights into our dataset.

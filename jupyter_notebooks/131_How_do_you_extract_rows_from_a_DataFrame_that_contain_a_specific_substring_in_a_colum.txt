@@ -1,0 +1,60 @@
+How do you extract rows from a DataFrame that contain a specific substring in a column?
+
+**Question:**
+How do you combine multiple DataFrames based on row indices in pandas?
+
+---
+
+**Combining Multiple DataFrames Based on Row Indices**
+
+In pandas, you might often encounter scenarios where you need to combine multiple DataFrames based on their row indices. This process, known as concatenation, allows you to merge DataFrames vertically, either along rows or columns. In this tutorial, we'll explore how to combine multiple DataFrames based on row indices, with detailed explanations and coding examples.
+
+**Introduction**
+
+Concatenating DataFrames based on row indices is a common operation in data manipulation and analysis. It enables you to consolidate data from different sources or split a large dataset into smaller chunks for processing. By understanding how to concatenate DataFrames, you can efficiently manage and manipulate data for various analytical tasks.
+
+**Combining DataFrames Based on Row Indices**
+
+In pandas, you can use the `concat()` function to concatenate DataFrames along rows. This function takes a list of DataFrames as input and combines them based on their row indices. Additionally, you can specify parameters such as axis and join method to customize the concatenation process.
+
+**Example: Combining DataFrames Based on Row Indices**
+
+Let's consider two sample DataFrames, `df1` and `df2`, and concatenate them based on their row indices:
+
+```python
+import pandas as pd
+
+# Sample DataFrame 1
+data1 = {'A': [1, 2, 3], 'B': [4, 5, 6]}
+df1 = pd.DataFrame(data1)
+
+# Sample DataFrame 2
+data2 = {'A': [7, 8, 9], 'B': [10, 11, 12]}
+df2 = pd.DataFrame(data2)
+
+# Concatenate DataFrames based on row indices
+combined_df = pd.concat([df1, df2])
+
+# Print the combined DataFrame
+print(combined_df)
+```
+
+**Output:**
+```
+   A   B
+0  1   4
+1  2   5
+2  3   6
+0  7  10
+1  8  11
+2  9  12
+```
+
+In this example:
+- We create two sample DataFrames, `df1` and `df2`, each containing two columns ('A' and 'B') and three rows.
+- We use the `pd.concat()` function to concatenate `df1` and `df2` along rows. The function takes a list of DataFrames as input.
+- The resulting DataFrame, `combined_df`, contains the concatenated data from both `df1` and `df2`, with row indices preserved.
+
+**Conclusion**
+
+Concatenating DataFrames based on row indices is a fundamental operation in pandas for combining data from multiple sources or splitting and reorganizing large datasets. By using the `concat()` function, you can efficiently merge DataFrames along rows while preserving their row indices. Whether consolidating data for analysis or preparing data for modeling, understanding how to concatenate DataFrames is essential for effective data manipulation and processing.

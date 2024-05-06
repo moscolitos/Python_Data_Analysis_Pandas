@@ -1,0 +1,62 @@
+How do you perform time-based rolling operations on a DataFrame?
+
+**Question:**
+How do you perform time-based rolling operations on a DataFrame in pandas?
+
+---
+
+**Performing Time-Based Rolling Operations on a DataFrame in Pandas**
+
+Time-based rolling operations are useful for calculating rolling statistics or aggregations over a specified time window. In pandas, we can leverage the `rolling()` method to perform such operations efficiently. In this tutorial, we'll explore how to perform time-based rolling operations on a DataFrame in pandas, a powerful data manipulation library in Python.
+
+**Introduction**
+
+Time-based rolling operations allow us to compute rolling statistics or aggregations over a defined period, such as days, weeks, or months. These operations are commonly used in time series analysis to smooth out fluctuations and identify trends or patterns in the data. In pandas, the `rolling()` method provides a convenient way to perform such operations, enabling us to calculate rolling statistics with ease.
+
+**Loading the Titanic Dataset**
+
+Before we proceed, let's load the Titanic dataset, which contains information about passengers aboard the Titanic. While this dataset may not have a time-based index, we can still demonstrate time-based rolling operations using other numerical columns.
+
+```python
+import pandas as pd
+
+# Load the Titanic dataset
+url = "https://raw.githubusercontent.com/moscolitos/titanic-dataset/main/Titanic-Dataset.csv"
+titanic_data = pd.read_csv(url)
+
+# Display the first few rows of the dataset
+print(titanic_data.head())
+```
+
+**Performing Time-Based Rolling Operations**
+
+To perform time-based rolling operations on a DataFrame in pandas, we'll use the `rolling()` method followed by an aggregation function.
+
+```python
+# Convert the 'Age' column to datetime
+titanic_data['Age'] = pd.to_datetime(titanic_data['Age'])
+
+# Set the 'Age' column as the index (for demonstration purposes)
+titanic_data.set_index('Age', inplace=True)
+
+# Perform a time-based rolling mean calculation over a window of 30 days
+rolling_mean = titanic_data['Fare'].rolling(window='30D').mean()
+
+# Display the rolling mean
+print(rolling_mean)
+```
+
+In this code snippet:
+- We first convert the 'Age' column to datetime format to mimic a time-based index.
+- We set the 'Age' column as the index of the DataFrame.
+- We use the `rolling()` method on the 'Fare' column to specify a rolling window of 30 days.
+- We calculate the rolling mean using the `mean()` aggregation function.
+- The result is stored in the `rolling_mean` variable and displayed.
+
+**Understanding the Parameters**
+
+- `window='30D'`: Specifies the window size for the rolling operation. Here, we use a window of 30 days for demonstration purposes.
+
+**Conclusion**
+
+In this tutorial, we learned how to perform time-based rolling operations on a DataFrame in pandas. By using the `rolling()` method with an appropriate window size and aggregation function, we can calculate rolling statistics or aggregations efficiently. Time-based rolling operations are valuable tools in time series analysis, allowing us to smooth out fluctuations and identify underlying trends or patterns in the data. With pandas, performing time-based rolling operations is straightforward, enabling us to gain deeper insights into time series datasets effortlessly.

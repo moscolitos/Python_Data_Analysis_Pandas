@@ -1,0 +1,67 @@
+How do you calculate the percentile rank of a DataFrame column?
+
+**Question:**
+How do you calculate the percentile rank of a DataFrame column in pandas?
+
+---
+
+**Calculating the Percentile Rank of a DataFrame Column in Pandas**
+
+Understanding the distribution of data and identifying percentiles are crucial tasks in data analysis. Percentile rank provides insights into the position of a particular value relative to the entire dataset. In this tutorial, we'll explore how to calculate the percentile rank of a DataFrame column using pandas, a versatile data manipulation library in Python.
+
+**Introduction**
+
+Percentile rank measures the percentage of values in a dataset that are equal to or below a given value. It helps us understand the relative standing of a value within the dataset. Pandas provides efficient methods for calculating percentile rank, allowing us to analyze and interpret the distribution of data easily.
+
+**Loading the Titanic Dataset**
+
+Before we delve into calculating percentile rank, let's load the Titanic dataset, which contains information about passengers aboard the Titanic. We'll use this dataset to demonstrate how to calculate percentile rank.
+
+```python
+import pandas as pd
+
+# Load the Titanic dataset
+url = "https://raw.githubusercontent.com/moscolitos/titanic-dataset/main/Titanic-Dataset.csv"
+titanic_data = pd.read_csv(url)
+
+# Display the first few rows of the dataset
+print(titanic_data.head())
+```
+
+**Calculating Percentile Rank**
+
+To calculate the percentile rank of a DataFrame column, we can use the `percentileofscore()` function from the `scipy.stats` module, which is integrated with pandas.
+
+```python
+from scipy.stats import percentileofscore
+
+# Calculate the percentile rank of the 'Age' column
+titanic_data['Age_Percentile_Rank'] = titanic_data['Age'].apply(lambda x: percentileofscore(titanic_data['Age'], x))
+
+print("DataFrame with Percentile Rank of the 'Age' Column:")
+print(titanic_data[['Age', 'Age_Percentile_Rank']].head())
+```
+
+In this code snippet:
+- We use the `percentileofscore()` function to calculate the percentile rank of each value in the 'Age' column relative to the entire dataset.
+- The `apply()` function is used to apply the `percentileofscore()` function to each value in the 'Age' column.
+
+**Understanding the Parameters**
+
+- `a`: The array-like object (e.g., DataFrame column) for which to calculate the percentile rank.
+- `score`: The value for which to calculate the percentile rank.
+- `kind`: Specifies the method used to interpolate the percentile rank if the value is not found in the dataset. Options include 'rank', 'weak', and 'strict'.
+
+```python
+# Calculate the percentile rank using a different method
+titanic_data['Fare_Percentile_Rank'] = titanic_data['Fare'].apply(lambda x: percentileofscore(titanic_data['Fare'], x, kind='weak'))
+
+print("DataFrame with Percentile Rank of the 'Fare' Column using 'weak' method:")
+print(titanic_data[['Fare', 'Fare_Percentile_Rank']].head())
+```
+
+In this example, we specify the `kind='weak'` parameter to use a different method for interpolating the percentile rank.
+
+**Conclusion**
+
+In this tutorial, we learned how to calculate the percentile rank of a DataFrame column in pandas. By leveraging the `percentileofscore()` function from the `scipy.stats` module, we can efficiently determine the percentile rank of each value in a dataset relative to the entire dataset. Percentile rank analysis is a valuable technique for understanding the distribution of data and identifying the relative position of individual values within a dataset.

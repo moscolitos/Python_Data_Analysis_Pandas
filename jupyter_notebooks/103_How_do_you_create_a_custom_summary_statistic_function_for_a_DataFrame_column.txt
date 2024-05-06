@@ -1,0 +1,62 @@
+How do you create a custom summary statistic function for a DataFrame column?
+
+**Question:**
+How do you create a custom summary statistic function for a DataFrame column in pandas?
+
+---
+
+**Creating Custom Summary Statistic Functions for DataFrame Columns in Pandas**
+
+In data analysis, it's common to calculate summary statistics such as mean, median, or standard deviation for DataFrame columns. However, there may be scenarios where you need to compute custom summary statistics tailored to your specific requirements. Pandas provides flexibility to define and apply custom functions to DataFrame columns efficiently. In this tutorial, we'll explore how to create and apply custom summary statistic functions to DataFrame columns in pandas.
+
+**Introduction**
+
+Pandas is a powerful data manipulation library in Python that offers various built-in functions for data analysis. However, there are situations where the built-in summary statistics may not be sufficient, and you need to define custom functions to derive meaningful insights from your data. By creating custom summary statistic functions, you can perform specialized calculations tailored to your analysis needs.
+
+**Loading the Titanic Dataset**
+
+Before we proceed, let's load the Titanic dataset, which contains information about passengers aboard the Titanic. We'll use this dataset to demonstrate how to create custom summary statistic functions for DataFrame columns.
+
+```python
+import pandas as pd
+
+# Load the Titanic dataset
+url = "https://raw.githubusercontent.com/moscolitos/titanic-dataset/main/Titanic-Dataset.csv"
+titanic_data = pd.read_csv(url)
+
+# Display the first few rows of the dataset
+print(titanic_data.head())
+```
+
+**Creating a Custom Summary Statistic Function**
+
+To create a custom summary statistic function for a DataFrame column in pandas, you can use the `apply()` function along with a custom function that defines the desired calculation.
+
+```python
+# Define a custom summary statistic function
+def custom_summary_statistic(column):
+    # Define your custom calculation here
+    # For example, let's calculate the range
+    return column.max() - column.min()
+
+# Apply the custom function to a DataFrame column
+custom_range = titanic_data['Age'].apply(custom_summary_statistic)
+
+# Display the custom summary statistic
+print("Custom Range of Age Column:", custom_range)
+```
+
+In this code:
+- We define a custom summary statistic function `custom_summary_statistic()` that takes a column as input and calculates a custom statistic (e.g., range).
+- Within the custom function, you can define any calculation based on your analysis requirements.
+- We apply the custom function to the 'Age' column using the `apply()` function, which applies the function element-wise to each value in the column.
+- The result is stored in the variable `custom_range`, which contains the custom summary statistic values for the 'Age' column.
+
+**Understanding the Parameters**
+
+- `column`: The DataFrame column to which the custom summary statistic function is applied.
+- `apply()`: Applies the custom function to each element in the column.
+
+**Conclusion**
+
+In this tutorial, we learned how to create custom summary statistic functions for DataFrame columns in pandas. By defining custom functions tailored to our analysis needs, we can perform specialized calculations and derive meaningful insights from our data. Whether it's calculating a custom range, variance, or any other statistic, pandas provides the flexibility to define and apply custom functions efficiently. Understanding how to create and apply custom summary statistic functions empowers data analysts to perform in-depth analysis and uncover valuable insights from their datasets. With pandas, conducting custom statistical analysis becomes a seamless process, enabling data-driven decision-making and informed conclusions.

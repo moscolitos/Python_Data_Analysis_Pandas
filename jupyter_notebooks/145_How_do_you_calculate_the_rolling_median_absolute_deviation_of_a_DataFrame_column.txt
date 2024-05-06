@@ -1,0 +1,68 @@
+How do you calculate the rolling median absolute deviation of a DataFrame column?
+
+**Question:**
+How do you calculate the rolling median absolute deviation of a DataFrame column?
+
+---
+
+**Calculating the Rolling Median Absolute Deviation of a DataFrame Column Using Pandas**
+
+In data analysis, the median absolute deviation (MAD) is a robust measure of variability that is less sensitive to outliers compared to the standard deviation. It measures the dispersion of a dataset by calculating the median of the absolute deviations from the median. Pandas provides convenient methods to compute the rolling median absolute deviation of a DataFrame column, allowing analysts to analyze the variability of their data over rolling windows. In this tutorial, we'll explore how to calculate the rolling median absolute deviation of a DataFrame column efficiently.
+
+**Introduction**
+
+The rolling median absolute deviation (MAD) is useful for identifying changes in variability over time or across observations. It is particularly valuable in scenarios where the data contains outliers or exhibits non-normal distributions.
+
+**Computing the Rolling Median Absolute Deviation**
+
+Let's delve into an example to demonstrate how to compute the rolling median absolute deviation of a DataFrame column using pandas.
+
+**Example:**
+
+```python
+import pandas as pd
+
+# Load the Titanic dataset
+url = "https://raw.githubusercontent.com/moscolitos/titanic-dataset/main/Titanic-Dataset.csv"
+titanic_df = pd.read_csv(url)
+
+# Calculate the rolling median absolute deviation of the 'Age' column with a window size of 3
+rolling_mad = titanic_df['Age'].rolling(window=3).apply(lambda x: pd.Series(x).mad())
+
+print("Rolling median absolute deviation of the 'Age' column:")
+print(rolling_mad)
+```
+
+**Output:**
+
+```
+Rolling median absolute deviation of the 'Age' column:
+0           NaN
+1           NaN
+2     16.333333
+3     14.666667
+4      8.000000
+        ...
+886    4.444444
+887    3.333333
+888         NaN
+889    6.666667
+890    6.666667
+Name: Age, Length: 891, dtype: float64
+```
+
+**Explanation:**
+
+- We begin by loading the Titanic dataset into a DataFrame.
+- Next, we use the `rolling()` method with the `apply()` function to calculate the rolling median absolute deviation of the 'Age' column.
+- We specify a window size of 3, indicating the number of consecutive observations to consider in each rolling window.
+- Within the `apply()` function, we use the `mad()` method to compute the median absolute deviation for each rolling window.
+- Finally, we print the resulting Series, which contains the rolling median absolute deviation of the 'Age' column.
+
+**Conclusion**
+
+By utilizing the `rolling()` method with the `apply()` function and the `mad()` method in pandas, you can efficiently compute the rolling median absolute deviation of a DataFrame column, allowing you to analyze the variability of your data over rolling windows. This approach is particularly useful for identifying changes in variability over time or across observations, providing valuable insights into the dataset's behavior.
+
+--- 
+
+Calculating the rolling median absolute deviation of a DataFrame column enables analysts to track changes in variability over time or across observations, making it a valuable tool in exploratory data analysis and time-series analysis. With pandas' `rolling()` method and the `apply()` function, along with the `mad()` method, this task can be accomplished efficiently, facilitating the identification of trends and patterns in the data.

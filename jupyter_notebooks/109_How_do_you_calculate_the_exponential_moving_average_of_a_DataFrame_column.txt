@@ -1,0 +1,60 @@
+How do you calculate the exponential moving average of a DataFrame column?
+
+**Question:**
+How do you calculate the exponential moving average of a DataFrame column in pandas?
+
+---
+
+**Calculating Exponential Moving Average (EMA) in Pandas**
+
+The exponential moving average (EMA) is a popular technique for smoothing time-series data and identifying trends over time. In pandas, you can compute the EMA of a DataFrame column using the `ewm()` function. This tutorial will guide you through the process of calculating the exponential moving average in pandas with detailed explanations and coding examples.
+
+**Introduction**
+
+Pandas is a powerful data analysis library in Python, widely used for tasks such as data manipulation, cleaning, and analysis. When working with time-series data, it's often useful to compute moving averages to identify underlying trends and patterns. The exponential moving average (EMA) is a weighted moving average that places more emphasis on recent data points, making it particularly useful for analyzing time-series data.
+
+**Calculating Exponential Moving Average (EMA)**
+
+To calculate the exponential moving average of a DataFrame column in pandas, you can use the `ewm()` function, which stands for exponentially weighted moving. This function allows you to specify the `alpha` parameter, which controls the smoothing factor and influences the weight assigned to each data point. A smaller `alpha` value assigns more weight to recent observations, while a larger `alpha` value gives more weight to older observations.
+
+**Example: Calculating Exponential Moving Average**
+
+Let's consider an example where we have a DataFrame `df` containing stock price data, and we want to compute the 10-day exponential moving average of the 'Close' column.
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load the dataset into a DataFrame
+url = "https://raw.githubusercontent.com/moscolitos/titanic-dataset/main/Titanic-Dataset.csv"
+df = pd.read_csv(url)
+
+# Calculate the 10-day exponential moving average of the 'Fare' column
+df['EMA_10'] = df['Fare'].ewm(span=10, adjust=False).mean()
+
+# Plot the original data and the exponential moving average
+plt.figure(figsize=(10, 6))
+plt.plot(df['Fare'], label='Original Data', color='blue')
+plt.plot(df['EMA_10'], label='EMA (10-day)', color='red')
+plt.title('Exponential Moving Average (10-day)')
+plt.xlabel('Index')
+plt.ylabel('Fare')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+In this example:
+- We first load the Titanic dataset into a DataFrame `df` using the `pd.read_csv()` function.
+- Next, we use the `ewm()` function on the 'Fare' column with `span=10` to calculate the 10-day exponential moving average.
+- We create a new column 'EMA_10' in the DataFrame to store the calculated exponential moving average.
+- Finally, we plot both the original data and the exponential moving average using `matplotlib`.
+
+**Understanding the Parameters**
+
+- `span=10`: Specifies the window size for calculating the exponential moving average. In this case, we're using a 10-day window.
+- `adjust=False`: Specifies whether to adjust the weights for bias. We set it to `False` to ensure that no bias correction is applied.
+
+**Conclusion**
+
+The exponential moving average is a powerful tool for smoothing time-series data and identifying trends. In pandas, you can easily compute the exponential moving average of a DataFrame column using the `ewm()` function, specifying the desired window size and adjusting parameters as needed. By visualizing the original data alongside the exponential moving average, you can gain insights into the underlying trends and patterns in your data.
