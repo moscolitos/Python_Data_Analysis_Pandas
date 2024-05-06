@@ -4,6 +4,13 @@
 
 Welcome to the Pandas Tutorials repository! This collection of Jupyter notebooks is designed to help you master data manipulation and analysis using the Pandas library in Python. Each notebook focuses on a specific question or task, providing practical code examples and explanations.
 
+## How to Use These Notebooks
+
+To use these notebooks:
+1. Clone this repository.
+2. Ensure you have Jupyter installed on your machine or use Google Colab.
+3. Open the notebooks in Jupyter or import them into Colab to view and run the code.
+
 ## Table of Contents
 
 Each link below corresponds to a Jupyter notebook that covers a particular aspect of Pandas:
@@ -159,3 +166,11 @@ Each link below corresponds to a Jupyter notebook that covers a particular aspec
 - [How do you find the difference between two DataFrames?](/jupyter_notebooks/150_How_do_you_find_the_difference_between_two_DataFrames.ipynb)
 - [How do you convert a DataFrame column to an ordinal data type?](/jupyter_notebooks/151_How_do_you_convert_a_DataFrame_column_to_an_ordinal_data_type.ipynb)
 - [How do you calculate the rolling percentile rank of a DataFrame column?](/jupyter_notebooks/152_How_do_you_calculate_the_rolling_percentile_rank_of_a_DataFrame_column.ipynb)
+
+## Contributing
+
+Contributions to this repository are welcome. Please fork the repository and submit a pull request with your improvements.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
