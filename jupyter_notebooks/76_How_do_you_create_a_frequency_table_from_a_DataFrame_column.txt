@@ -1,0 +1,66 @@
+How do you create a frequency table from a DataFrame column?
+
+**Question:**
+How do you create a frequency table from a DataFrame column in pandas?
+
+---
+
+**Creating a Frequency Table from a DataFrame Column in Pandas**
+
+A frequency table, also known as a count table, is a valuable tool in data analysis that summarizes the count of unique values in a dataset. In this tutorial, we'll explore how to create a frequency table from a DataFrame column using pandas, a powerful data manipulation library in Python.
+
+**Introduction**
+
+Frequency tables provide insights into the distribution of categorical or discrete variables within a dataset. They allow us to understand the frequency or occurrence of each unique value in a column, which is essential for exploratory data analysis and understanding the characteristics of the data.
+
+**Loading the Titanic Dataset**
+
+Before we dive into creating a frequency table, let's load the Titanic dataset, which contains information about passengers aboard the Titanic. We'll use this dataset to demonstrate how to create a frequency table.
+
+```python
+import pandas as pd
+
+# Load the Titanic dataset
+url = "https://raw.githubusercontent.com/moscolitos/titanic-dataset/main/Titanic-Dataset.csv"
+titanic_data = pd.read_csv(url)
+
+# Display the first few rows of the dataset
+print(titanic_data.head())
+```
+
+**Creating a Frequency Table**
+
+To create a frequency table from a DataFrame column, we can use the `value_counts()` function in pandas.
+
+```python
+# Create a frequency table for the 'Sex' column
+sex_frequency = titanic_data['Sex'].value_counts()
+
+print("Frequency Table for Sex Column:")
+print(sex_frequency)
+```
+
+In this code snippet, we use the `value_counts()` function on the 'Sex' column of the DataFrame `titanic_data` to generate the frequency table. This function returns a Series object with the count of unique values in the column.
+
+**Understanding the Parameters**
+
+The `value_counts()` function has several optional parameters that allow us to customize the behavior of the frequency table:
+
+- `normalize`: If set to `True`, returns the relative frequencies instead of counts.
+- `sort`: If set to `True`, sorts the results by frequencies in descending order.
+- `ascending`: If set to `True`, sorts the results in ascending order.
+- `bins`: For numeric data, divides the data into discrete bins and counts the occurrences in each bin.
+
+```python
+# Create a frequency table with normalized values
+sex_frequency_normalized = titanic_data['Sex'].value_counts(normalize=True)
+
+print("Normalized Frequency Table for Sex Column:")
+print(sex_frequency_normalized)
+```
+
+In this example, we use the `normalize=True` parameter to obtain relative frequencies instead of counts.
+
+**Conclusion**
+
+In this tutorial, we learned how to create a frequency table from a DataFrame column in pandas. We used the Titanic dataset to demonstrate the process and introduced the `value_counts()` function, which is instrumental in generating frequency tables. Frequency tables provide valuable insights into the distribution of categorical variables, aiding in data exploration and analysis.

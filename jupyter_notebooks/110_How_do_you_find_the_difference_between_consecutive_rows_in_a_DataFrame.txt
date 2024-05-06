@@ -1,0 +1,50 @@
+How do you find the difference between consecutive rows in a DataFrame?
+
+**Question:**
+How do you find the difference between consecutive rows in a DataFrame in pandas?
+
+---
+
+**Calculating Differences Between Consecutive Rows in Pandas**
+
+In pandas, you may often need to calculate the difference between consecutive rows in a DataFrame to analyze trends or identify changes in data over time. This tutorial will guide you through the process of computing differences between consecutive rows in pandas, providing detailed explanations and coding examples.
+
+**Introduction**
+
+Pandas is a powerful data manipulation library in Python, widely used for tasks such as data cleaning, analysis, and visualization. When working with sequential data, understanding the changes between consecutive rows is essential for identifying patterns and trends. Pandas provides convenient functions to compute these differences efficiently.
+
+**Calculating Differences Between Consecutive Rows**
+
+To calculate the difference between consecutive rows in a DataFrame in pandas, you can use the `diff()` function. This function computes the difference between each element and its previous element along a specified axis. By default, it calculates the difference between each element and the preceding element in the same column.
+
+**Example: Calculating Differences Between Consecutive Rows**
+
+Let's consider an example where we have a DataFrame `df` containing time-series data, and we want to calculate the difference between consecutive values in the 'Fare' column.
+
+```python
+import pandas as pd
+
+# Load the dataset into a DataFrame
+url = "https://raw.githubusercontent.com/moscolitos/titanic-dataset/main/Titanic-Dataset.csv"
+df = pd.read_csv(url)
+
+# Calculate the difference between consecutive values in the 'Fare' column
+df['Fare_Diff'] = df['Fare'].diff()
+
+# Display the DataFrame with the calculated differences
+print(df[['Fare', 'Fare_Diff']].head(10))
+```
+
+In this example:
+- We first load the Titanic dataset into a DataFrame `df` using the `pd.read_csv()` function.
+- Next, we use the `diff()` function on the 'Fare' column to calculate the difference between consecutive values.
+- We create a new column 'Fare_Diff' in the DataFrame to store the calculated differences.
+- Finally, we display the first 10 rows of the DataFrame along with the calculated differences.
+
+**Understanding the Parameters**
+
+- No additional parameters are required for the `diff()` function. By default, it calculates the difference between each element and its previous element along the specified axis.
+
+**Conclusion**
+
+Calculating the difference between consecutive rows in a DataFrame is a common operation in data analysis, particularly when working with time-series or sequential data. In pandas, you can easily compute these differences using the `diff()` function, which provides a straightforward way to identify trends and changes in your data over time. By incorporating these techniques into your analysis workflows, you can gain valuable insights and make informed decisions based on your data.

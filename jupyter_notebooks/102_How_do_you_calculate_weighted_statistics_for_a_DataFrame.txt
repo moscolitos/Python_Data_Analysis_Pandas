@@ -1,0 +1,78 @@
+How do you calculate weighted statistics for a DataFrame?
+
+**Question:**
+How do you calculate weighted statistics for a DataFrame in pandas?
+
+---
+
+**Calculating Weighted Statistics for a DataFrame in Pandas**
+
+In data analysis, it's often necessary to calculate statistics while considering the weights associated with each data point. For instance, when analyzing survey data, each respondent may have a different weight based on their representation in the population. Pandas provides functionalities to compute weighted statistics efficiently. In this tutorial, we'll explore how to calculate weighted statistics for a DataFrame using pandas, a powerful data manipulation library in Python.
+
+**Introduction**
+
+Weighted statistics involve assigning different weights to individual data points based on certain criteria. These weights could represent the importance or significance of each data point in the analysis. When computing statistics such as mean, median, or standard deviation, these weights are taken into account to provide more accurate insights.
+
+**Loading the Titanic Dataset**
+
+Before we proceed, let's load the Titanic dataset, which contains information about passengers aboard the Titanic. We'll use this dataset to demonstrate how to calculate weighted statistics for a DataFrame.
+
+```python
+import pandas as pd
+
+# Load the Titanic dataset
+url = "https://raw.githubusercontent.com/moscolitos/titanic-dataset/main/Titanic-Dataset.csv"
+titanic_data = pd.read_csv(url)
+
+# Display the first few rows of the dataset
+print(titanic_data.head())
+```
+
+**Calculating Weighted Statistics**
+
+To calculate weighted statistics for a DataFrame in pandas, we can use the `numpy` library in combination with pandas' aggregation functions.
+
+```python
+import numpy as np
+
+# Define weights (e.g., Fare can be used as weights)
+weights = titanic_data['Fare']
+
+# Calculate weighted mean
+weighted_mean = np.average(titanic_data['Age'], weights=weights)
+
+# Calculate weighted standard deviation
+weighted_std = np.sqrt(np.average((titanic_data['Age'] - weighted_mean) ** 2, weights=weights))
+
+# Calculate weighted median (requires custom function)
+def weighted_median(data, weights):
+    sorted_data = np.sort(data)
+    cumsum_weights = np.cumsum(weights)
+    cutoff = cumsum_weights[-1] / 2.0
+    median = sorted_data[np.searchsorted(cumsum_weights, cutoff)]
+    return median
+
+weighted_median_age = weighted_median(titanic_data['Age'], weights)
+
+# Display the calculated weighted statistics
+print("Weighted Mean Age:", weighted_mean)
+print("Weighted Standard Deviation of Age:", weighted_std)
+print("Weighted Median Age:", weighted_median_age)
+```
+
+In this code:
+- We define the weights, which can be any column in the DataFrame (e.g., 'Fare').
+- We use numpy's `average()` function to calculate the weighted mean of the 'Age' column.
+- We calculate the weighted standard deviation using the formula for weighted standard deviation.
+- To calculate the weighted median, we define a custom function `weighted_median()` that takes the data and weights as inputs.
+
+**Understanding the Parameters**
+
+- `weights`: The weights associated with each data point.
+- `np.average()`: Computes the weighted average.
+- `np.sqrt()`: Calculates the square root.
+- `weighted_median()`: Custom function to compute the weighted median.
+
+**Conclusion**
+
+In this tutorial, we learned how to calculate weighted statistics for a DataFrame in pandas. By considering the weights associated with each data point, we can obtain more accurate insights into our data. Whether it's calculating the weighted mean, median, or standard deviation, pandas provides flexible and efficient methods to handle weighted statistics. Understanding how to incorporate weights into our analysis is essential for conducting meaningful data analysis and making informed decisions. With pandas, performing weighted statistics on a DataFrame is a straightforward process, empowering data analysts to extract valuable insights from their datasets.

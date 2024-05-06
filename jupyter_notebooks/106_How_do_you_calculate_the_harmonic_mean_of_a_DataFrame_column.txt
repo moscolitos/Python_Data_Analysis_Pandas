@@ -1,0 +1,58 @@
+How do you calculate the harmonic mean of a DataFrame column?
+
+**Question:**
+How do you calculate the harmonic mean of a DataFrame column in pandas?
+
+---
+
+**Calculating the Harmonic Mean of a DataFrame Column in Pandas**
+
+The harmonic mean is a statistical measure used to calculate the average of rates or ratios. In pandas, you can compute the harmonic mean of a DataFrame column using the `scipy.stats.hmean()` function from the SciPy library. In this tutorial, we'll explore how to perform this operation and provide examples for better understanding.
+
+**Introduction**
+
+Pandas is a powerful data manipulation library in Python, widely used for data analysis tasks. When working with datasets, you may encounter scenarios where you need to compute statistical measures like the harmonic mean to gain insights into your data. The harmonic mean is particularly useful when dealing with rates, ratios, or similar data types.
+
+**Loading the Titanic Dataset**
+
+Before we proceed, let's load the Titanic dataset, which contains information about passengers aboard the Titanic. We'll use this dataset to demonstrate how to calculate the harmonic mean of a column.
+
+```python
+import pandas as pd
+
+# Load the Titanic dataset
+url = "https://raw.githubusercontent.com/moscolitos/titanic-dataset/main/Titanic-Dataset.csv"
+titanic_data = pd.read_csv(url)
+
+# Display the first few rows of the dataset
+print(titanic_data.head())
+```
+
+**Calculating the Harmonic Mean**
+
+To calculate the harmonic mean of a DataFrame column, we'll use the `hmean()` function from the `scipy.stats` module. First, ensure you have the SciPy library installed (`pip install scipy`). Then, you can apply the `hmean()` function to the desired column.
+
+```python
+from scipy.stats import hmean
+
+# Calculate the harmonic mean of the 'Fare' column
+harmonic_mean_fare = hmean(titanic_data['Fare'].dropna())
+
+# Display the harmonic mean
+print("Harmonic Mean of 'Fare' column:", harmonic_mean_fare)
+```
+
+In this code:
+- We import the `hmean()` function from the `scipy.stats` module.
+- We calculate the harmonic mean of the 'Fare' column by passing it as an argument to the `hmean()` function. It's important to drop any NaN (missing) values from the column using `dropna()` to avoid errors.
+- Finally, we display the computed harmonic mean.
+
+**Understanding the Parameters**
+
+- `titanic_data['Fare']`: Accesses the 'Fare' column in the DataFrame.
+- `.dropna()`: Drops any missing values from the 'Fare' column before computing the harmonic mean.
+- `hmean()`: Computes the harmonic mean of the values in the specified column.
+
+**Conclusion**
+
+Calculating the harmonic mean of a DataFrame column is a straightforward task in pandas, thanks to the `scipy.stats.hmean()` function. By applying this function to the desired column, you can efficiently compute the harmonic mean and gain insights into the data's distribution. Whether you're analyzing financial data, rates, or any other dataset where the harmonic mean is relevant, pandas and SciPy provide the tools you need to perform this calculation with ease.

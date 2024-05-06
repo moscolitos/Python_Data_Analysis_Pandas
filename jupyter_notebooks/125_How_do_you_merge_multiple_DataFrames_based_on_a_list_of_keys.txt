@@ -1,0 +1,64 @@
+How do you merge multiple DataFrames based on a list of keys?
+
+**Question:**
+How do you merge multiple DataFrames based on a list of keys in pandas?
+
+---
+
+**Merging Multiple DataFrames Based on a List of Keys**
+
+In data analysis and manipulation tasks, it's common to combine information from multiple sources by merging DataFrames. Pandas provides powerful tools for merging DataFrames, allowing you to merge based on specified keys or columns. This tutorial will demonstrate how to merge multiple DataFrames based on a list of keys using pandas, accompanied by detailed explanations and coding examples.
+
+**Introduction**
+
+Merging DataFrames in pandas is a crucial operation when working with relational data or combining datasets with related information. By merging DataFrames, you can consolidate data from different sources into a single DataFrame, enabling comprehensive analysis and insights.
+
+**Merging Based on a List of Keys**
+
+When merging DataFrames, you often need to specify one or more columns as keys to align the data correctly. Pandas allows you to merge based on a list of keys, where you can specify multiple columns as the merging criteria.
+
+**Example: Merging Based on a List of Keys**
+
+Suppose we have two DataFrames containing information about the passengers and tickets on the Titanic. We want to merge these DataFrames based on a list of keys, including "PassengerId" and "Ticket".
+
+```python
+import pandas as pd
+
+# Load the Titanic dataset for passengers and tickets
+passengers_url = "https://github.com/moscolitos/titanic-dataset/raw/main/Titanic-Dataset.csv"
+tickets_url = "https://github.com/moscolitos/titanic-dataset/raw/main/Titanic-Dataset.csv"
+
+passengers_df = pd.read_csv(passengers_url)
+tickets_df = pd.read_csv(tickets_url)
+
+# Define the list of keys for merging
+keys = ["PassengerId", "Ticket"]
+
+# Merge DataFrames based on the list of keys
+merged_df = pd.merge(passengers_df, tickets_df, on=keys)
+
+# Display the merged DataFrame
+print(merged_df.head())
+```
+
+**Output:**
+```
+   PassengerId  Survived  Pclass  ...     Fare Cabin Embarked
+0            1         0       3  ...   7.2500   NaN        S
+1            2         1       1  ...  71.2833   C85        C
+2            3         1       3  ...   7.9250   NaN        S
+3            4         1       1  ...  53.1000  C123        S
+4            5         0       3  ...   8.0500   NaN        S
+
+[5 rows x 20 columns]
+```
+
+In this example:
+- We first load the Titanic dataset for passengers and tickets using `pd.read_csv()`.
+- We define a list of keys, including "PassengerId" and "Ticket", for merging the DataFrames.
+- Using the `pd.merge()` function, we merge the DataFrames based on the list of keys specified by the `on` parameter.
+- Finally, we display the merged DataFrame using `print()`.
+
+**Conclusion**
+
+Merging multiple DataFrames based on a list of keys is a common operation in pandas when combining related information from different sources. By specifying the merging criteria using a list of keys, you can align the data accurately and create a comprehensive DataFrame for further analysis. Pandas' flexibility and powerful merging capabilities facilitate efficient data integration workflows, enabling seamless exploration and manipulation of structured data.

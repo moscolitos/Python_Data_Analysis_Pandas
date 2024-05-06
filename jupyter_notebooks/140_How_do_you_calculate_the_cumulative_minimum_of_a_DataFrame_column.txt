@@ -1,0 +1,52 @@
+How do you calculate the cumulative minimum of a DataFrame column?
+
+**Question:**
+How do you resample data at different frequencies in a DataFrame?
+
+---
+
+**Resampling Data at Different Frequencies in a DataFrame**
+
+In data analysis, you often need to work with time series data and analyze it at different frequencies. Pandas provides powerful tools for resampling time series data to different frequencies, such as upsampling (increasing the frequency) or downsampling (decreasing the frequency). In this tutorial, we'll explore how to resample data at different frequencies in a DataFrame using pandas.
+
+**Introduction**
+
+Resampling data involves changing the frequency of the time series data to better suit the analysis or visualization requirements. Pandas provides the `resample()` function to perform resampling operations on time series data. This function allows you to specify the desired frequency and apply aggregation functions to the data.
+
+**Resampling Data at Different Frequencies**
+
+Let's walk through an example to demonstrate how to resample data at different frequencies in a DataFrame.
+
+**Example:**
+
+```python
+import pandas as pd
+
+# Load the Titanic dataset
+url = "https://raw.githubusercontent.com/moscolitos/titanic-dataset/main/Titanic-Dataset.csv"
+titanic_df = pd.read_csv(url, index_col="PassengerId", parse_dates=True)
+
+# Resample the data to monthly frequency
+monthly_resampled = titanic_df.resample('M').mean()
+
+print("Resampled Data at Monthly Frequency:")
+print(monthly_resampled.head())
+
+# Resample the data to weekly frequency
+weekly_resampled = titanic_df.resample('W').sum()
+
+print("\nResampled Data at Weekly Frequency:")
+print(weekly_resampled.head())
+```
+
+In this example:
+- We load the Titanic dataset into a DataFrame and set the 'PassengerId' column as the index using `index_col="PassengerId"`.
+- We parse the dates in the DataFrame using `parse_dates=True`.
+- We use the `resample()` function to resample the data at different frequencies. In the first resampling, we resample the data to monthly frequency by specifying `'M'`. We calculate the mean of each month using `.mean()`. In the second resampling, we resample the data to weekly frequency by specifying `'W'`. We calculate the sum of each week using `.sum()`.
+
+**Conclusion**
+
+Resampling data at different frequencies is essential for analyzing time series data effectively. Pandas provides the `resample()` function, which allows you to easily resample time series data to different frequencies. By specifying the desired frequency and applying appropriate aggregation functions, you can gain valuable insights from your time series data.
+
+---
+By following these simple steps, you can efficiently resample your time series data at different frequencies using pandas, enabling you to perform meaningful analysis and gain insights into your data.

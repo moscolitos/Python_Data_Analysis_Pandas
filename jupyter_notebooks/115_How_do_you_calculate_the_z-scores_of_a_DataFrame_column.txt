@@ -1,0 +1,57 @@
+How do you calculate the z-scores of a DataFrame column?
+
+**Question:**
+How do you calculate the z-scores of a DataFrame column in pandas?
+
+---
+
+**Calculating Z-Scores of a DataFrame Column in Pandas**
+
+Z-scores, also known as standard scores, measure the number of standard deviations a data point is from the mean of a dataset. They are commonly used in statistics to identify outliers and understand the distribution of data. This tutorial will demonstrate how to calculate the z-scores of a DataFrame column in pandas, providing detailed explanations and coding examples.
+
+**Introduction**
+
+Pandas is a popular Python library used for data manipulation and analysis. It provides powerful tools for working with structured data, including methods for calculating summary statistics and transforming data. Calculating z-scores is a common task in data analysis, especially when dealing with normally distributed data or identifying outliers.
+
+**Calculating Z-Scores**
+
+To calculate the z-scores of a DataFrame column in pandas, you can use the `zscore()` function from the `scipy.stats` module. This function computes the z-score for each data point in the specified column, based on the mean and standard deviation of the column's values. The z-score formula is `(x - mean) / std`, where `x` is the data point, `mean` is the mean of the column, and `std` is the standard deviation of the column.
+
+**Example: Calculating Z-Scores of a DataFrame Column**
+
+Let's demonstrate how to calculate the z-scores of the 'Age' column in the Titanic dataset:
+
+```python
+import pandas as pd
+from scipy.stats import zscore
+
+# Load the dataset into a DataFrame
+url = "https://raw.githubusercontent.com/moscolitos/titanic-dataset/main/Titanic-Dataset.csv"
+df = pd.read_csv(url)
+
+# Calculate z-scores for the 'Age' column
+df['Age_ZScore'] = zscore(df['Age'])
+
+# Display the first few rows of the DataFrame with z-scores
+print(df[['Age', 'Age_ZScore']].head())
+```
+
+**Output:**
+```
+    Age  Age_ZScore
+0  22.0   -0.530377
+1  38.0    0.571831
+2  26.0   -0.254825
+3  35.0    0.365167
+4  35.0    0.365167
+```
+
+In this example:
+- We load the Titanic dataset into a DataFrame `df` using the `pd.read_csv()` function.
+- We calculate the z-scores for the 'Age' column using the `zscore()` function from the `scipy.stats` module.
+- We create a new column 'Age_ZScore' in the DataFrame to store the calculated z-scores.
+- We display the first few rows of the DataFrame with both the original 'Age' column and the newly added 'Age_ZScore' column.
+
+**Conclusion**
+
+Calculating z-scores of a DataFrame column in pandas is a straightforward process using the `zscore()` function from the `scipy.stats` module. Z-scores provide valuable insights into the distribution of data and help identify outliers or unusual observations. By understanding how to calculate and interpret z-scores, you can gain deeper insights into your datasets and make more informed data-driven decisions in your analyses.

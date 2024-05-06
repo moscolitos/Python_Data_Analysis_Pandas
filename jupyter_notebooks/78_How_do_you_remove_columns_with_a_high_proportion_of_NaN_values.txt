@@ -1,0 +1,68 @@
+How do you remove columns with a high proportion of NaN values?
+
+**Question:**
+How do you remove columns with a high proportion of NaN values in pandas?
+
+---
+
+**Removing Columns with a High Proportion of NaN Values in Pandas**
+
+Dealing with missing data is a common challenge in data analysis, and removing columns with a high proportion of NaN (Not a Number) values is often a necessary preprocessing step. In this tutorial, we'll explore how to identify and remove such columns using pandas, a powerful data manipulation library in Python.
+
+**Introduction**
+
+Missing data can arise due to various reasons, such as incomplete data collection or errors in data entry. While some missing values can be imputed or filled in, columns with a high proportion of missing values may not provide meaningful information and can be safely removed from the dataset.
+
+**Loading the Titanic Dataset**
+
+Before we proceed, let's load the Titanic dataset, which contains information about passengers aboard the Titanic. We'll use this dataset to demonstrate how to remove columns with a high proportion of NaN values.
+
+```python
+import pandas as pd
+
+# Load the Titanic dataset
+url = "https://raw.githubusercontent.com/moscolitos/titanic-dataset/main/Titanic-Dataset.csv"
+titanic_data = pd.read_csv(url)
+
+# Display the first few rows of the dataset
+print(titanic_data.head())
+```
+
+**Identifying Columns with NaN Values**
+
+Before removing columns, it's crucial to identify which columns have a high proportion of NaN values. We can use the `isnull()` function to check for missing values and then calculate the proportion of NaN values in each column.
+
+```python
+# Calculate the proportion of NaN values in each column
+nan_proportion = titanic_data.isnull().mean()
+
+print("Proportion of NaN Values in Each Column:")
+print(nan_proportion)
+```
+
+**Removing Columns**
+
+Once we have identified columns with a high proportion of NaN values, we can remove them from the DataFrame using the `dropna()` function.
+
+```python
+# Set threshold for proportion of NaN values
+threshold = 0.5  # Remove columns with more than 50% NaN values
+
+# Filter columns with proportion of NaN values above threshold
+columns_to_remove = nan_proportion[nan_proportion > threshold].index
+
+# Remove columns from the DataFrame
+titanic_data_filtered = titanic_data.drop(columns=columns_to_remove)
+
+print("DataFrame after Removing Columns with High Proportion of NaN Values:")
+print(titanic_data_filtered.head())
+```
+
+In this code snippet:
+- We set a threshold (e.g., 50%) for the proportion of NaN values.
+- We filter the columns where the proportion of NaN values exceeds the threshold.
+- We use the `drop()` function to remove the identified columns from the DataFrame.
+
+**Conclusion**
+
+In this tutorial, we learned how to remove columns with a high proportion of NaN values in pandas. We loaded the Titanic dataset and demonstrated how to identify columns with NaN values, calculate the proportion of NaN values in each column, and remove columns exceeding a specified threshold. Removing columns with excessive missing values can help clean and preprocess the data, ensuring more accurate and reliable analysis results.

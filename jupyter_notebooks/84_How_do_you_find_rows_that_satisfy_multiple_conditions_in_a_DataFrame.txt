@@ -1,0 +1,64 @@
+How do you find rows that satisfy multiple conditions in a DataFrame?
+
+**Question:**
+How do you find rows that satisfy multiple conditions in a DataFrame in pandas?
+
+---
+
+**Finding Rows that Satisfy Multiple Conditions in a DataFrame in Pandas**
+
+Filtering data based on multiple conditions is a common task in data analysis. In pandas, we can use boolean indexing to select rows that meet specific criteria. In this tutorial, we'll explore how to find rows that satisfy multiple conditions in a DataFrame using pandas, a powerful data manipulation library in Python.
+
+**Introduction**
+
+Boolean indexing allows us to filter rows in a DataFrame based on conditions defined using logical operators like AND (`&`) and OR (`|`). By specifying multiple conditions, we can narrow down our dataset to only include rows that meet all the specified criteria. This technique is useful for data preprocessing, analysis, and exploration.
+
+**Loading the Titanic Dataset**
+
+Before we dive into filtering rows based on multiple conditions, let's load the Titanic dataset, which contains information about passengers aboard the Titanic. We'll use this dataset to demonstrate how to find rows that satisfy multiple conditions.
+
+```python
+import pandas as pd
+
+# Load the Titanic dataset
+url = "https://raw.githubusercontent.com/moscolitos/titanic-dataset/main/Titanic-Dataset.csv"
+titanic_data = pd.read_csv(url)
+
+# Display the first few rows of the dataset
+print(titanic_data.head())
+```
+
+**Finding Rows with Multiple Conditions**
+
+To find rows that satisfy multiple conditions in a DataFrame, we can use boolean indexing with logical operators.
+
+```python
+# Find rows where the passenger is male and survived
+male_survivors = titanic_data[(titanic_data['Sex'] == 'male') & (titanic_data['Survived'] == 1)]
+
+print("Male passengers who survived:")
+print(male_survivors.head())
+```
+
+In this code snippet:
+- We use boolean indexing to filter rows where the 'Sex' column is equal to 'male' and the 'Survived' column is equal to 1.
+- The `&` operator performs element-wise AND operation, ensuring that both conditions are met for a row to be selected.
+
+**Understanding the Parameters**
+
+- `&`: The logical AND operator performs element-wise AND operation between two boolean arrays. It returns a boolean array where the corresponding elements in both arrays are True.
+- `|`: The logical OR operator performs element-wise OR operation between two boolean arrays. It returns a boolean array where at least one of the corresponding elements in the input arrays is True.
+
+```python
+# Find rows where the passenger is female or under 18 years old
+female_or_child_passengers = titanic_data[(titanic_data['Sex'] == 'female') | (titanic_data['Age'] < 18)]
+
+print("Female passengers or passengers under 18 years old:")
+print(female_or_child_passengers.head())
+```
+
+In this example, we use the `|` operator to perform element-wise OR operation, selecting rows where either the passenger is female or under 18 years old.
+
+**Conclusion**
+
+In this tutorial, we learned how to find rows that satisfy multiple conditions in a DataFrame using pandas. By leveraging boolean indexing with logical operators like AND (`&`) and OR (`|`), we can effectively filter rows based on complex criteria. This technique enables us to extract subsets of data that meet specific requirements, facilitating data analysis and exploration tasks.

@@ -1,0 +1,67 @@
+How do you convert a categorical column into one-hot encoding?
+
+**Question:**
+How do you convert a categorical column into one-hot encoding in pandas?
+
+---
+
+**Converting a Categorical Column into One-Hot Encoding in Pandas**
+
+One-hot encoding is a common technique used in data preprocessing to convert categorical variables into a format that can be provided to machine learning algorithms. In this tutorial, we'll explore how to perform one-hot encoding on a categorical column using pandas, a powerful data manipulation library in Python.
+
+**Introduction**
+
+Categorical variables, such as 'Sex', 'Embarked', or 'Pclass', are often represented as strings or integers in a dataset. However, many machine learning algorithms require numerical input. One-hot encoding converts categorical variables into a binary format, where each category is represented by a binary vector with a single '1' indicating the presence of the category and '0's elsewhere.
+
+**Loading the Titanic Dataset**
+
+Before we delve into one-hot encoding, let's load the Titanic dataset, which contains information about passengers aboard the Titanic. We'll use this dataset to demonstrate how to convert a categorical column into one-hot encoding.
+
+```python
+import pandas as pd
+
+# Load the Titanic dataset
+url = "https://raw.githubusercontent.com/moscolitos/titanic-dataset/main/Titanic-Dataset.csv"
+titanic_data = pd.read_csv(url)
+
+# Display the first few rows of the dataset
+print(titanic_data.head())
+```
+
+**Identifying Categorical Columns**
+
+Before performing one-hot encoding, it's essential to identify which columns contain categorical variables. In the Titanic dataset, columns like 'Sex', 'Embarked', and 'Pclass' are categorical.
+
+**Performing One-Hot Encoding**
+
+To perform one-hot encoding, we can use the `get_dummies()` function in pandas.
+
+```python
+# Perform one-hot encoding for the 'Sex' column
+sex_encoded = pd.get_dummies(titanic_data['Sex'], prefix='Sex')
+
+print("One-Hot Encoded 'Sex' Column:")
+print(sex_encoded.head())
+```
+
+In this code snippet:
+- We use the `get_dummies()` function on the 'Sex' column of the DataFrame `titanic_data`.
+- The `prefix` parameter specifies the prefix to add to the column names of the one-hot encoded variables.
+
+**Handling Multiple Categorical Columns**
+
+If we have multiple categorical columns, we can perform one-hot encoding on all of them simultaneously by passing the entire DataFrame to the `get_dummies()` function.
+
+```python
+# Perform one-hot encoding for multiple columns
+encoded_data = pd.get_dummies(titanic_data, columns=['Sex', 'Embarked', 'Pclass'], prefix=['Sex', 'Embarked', 'Pclass'])
+
+print("DataFrame after One-Hot Encoding:")
+print(encoded_data.head())
+```
+
+In this example, we specify the columns to encode and their respective prefixes.
+
+**Conclusion**
+
+In this tutorial, we learned how to convert a categorical column into one-hot encoding using pandas. One-hot encoding is a crucial preprocessing step in machine learning workflows, allowing us to represent categorical variables in a numerical format suitable for training machine learning models. By leveraging pandas' `get_dummies()` function, we can efficiently perform one-hot encoding on categorical columns in our datasets.

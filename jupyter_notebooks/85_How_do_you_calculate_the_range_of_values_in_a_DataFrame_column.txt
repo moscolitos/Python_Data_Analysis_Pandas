@@ -1,0 +1,54 @@
+How do you calculate the range of values in a DataFrame column?
+
+**Question:**
+How do you calculate the range of values in a DataFrame column in pandas?
+
+---
+
+**Calculating the Range of Values in a DataFrame Column in Pandas**
+
+Understanding the range of values within a dataset is essential for data analysis and exploration. In pandas, we can easily calculate the range of values in a DataFrame column using built-in functions. In this tutorial, we'll explore how to calculate the range of values in a DataFrame column using pandas, a powerful data manipulation library in Python.
+
+**Introduction**
+
+The range of values in a dataset represents the difference between the maximum and minimum values. It provides insights into the spread or variability of the data. Pandas provides convenient methods for calculating the range of values in a DataFrame column, allowing us to quickly understand the distribution and scale of the data.
+
+**Loading the Titanic Dataset**
+
+Before we proceed, let's load the Titanic dataset, which contains information about passengers aboard the Titanic. We'll use this dataset to demonstrate how to calculate the range of values in a DataFrame column.
+
+```python
+import pandas as pd
+
+# Load the Titanic dataset
+url = "https://raw.githubusercontent.com/moscolitos/titanic-dataset/main/Titanic-Dataset.csv"
+titanic_data = pd.read_csv(url)
+
+# Display the first few rows of the dataset
+print(titanic_data.head())
+```
+
+**Calculating the Range of Values**
+
+To calculate the range of values in a DataFrame column, we can use the `min()` and `max()` functions in pandas.
+
+```python
+# Calculate the range of values in the 'Age' column
+age_range = titanic_data['Age'].max() - titanic_data['Age'].min()
+
+print("Range of values in the 'Age' column:", age_range)
+```
+
+In this code snippet:
+- We use the `max()` function to find the maximum value in the 'Age' column.
+- We use the `min()` function to find the minimum value in the 'Age' column.
+- We subtract the minimum value from the maximum value to calculate the range.
+
+**Understanding the Parameters**
+
+- `max()`: Returns the maximum value in a Series or DataFrame column.
+- `min()`: Returns the minimum value in a Series or DataFrame column.
+
+**Conclusion**
+
+In this tutorial, we learned how to calculate the range of values in a DataFrame column using pandas. By leveraging the `max()` and `min()` functions, we can easily determine the maximum and minimum values in a column, respectively, and calculate the range by subtracting the minimum value from the maximum value. Understanding the range of values within a dataset is essential for assessing the spread or variability of the data, providing valuable insights for data analysis and interpretation.

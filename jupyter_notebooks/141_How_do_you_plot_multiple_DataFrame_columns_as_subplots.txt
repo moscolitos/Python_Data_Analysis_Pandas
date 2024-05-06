@@ -1,0 +1,63 @@
+How do you plot multiple DataFrame columns as subplots?
+
+**Question:**
+How do you plot multiple DataFrame columns as subplots?
+
+---
+
+**Plotting Multiple DataFrame Columns as Subplots in Pandas**
+
+In data analysis and visualization, it's often useful to compare multiple variables simultaneously. Pandas provides convenient methods to plot multiple DataFrame columns as subplots, allowing for a comprehensive analysis of the dataset. This tutorial will demonstrate how to plot multiple DataFrame columns as subplots using pandas and matplotlib.
+
+**Introduction**
+
+Plotting multiple DataFrame columns as subplots enables you to visualize the relationships between different variables within the same dataset. This approach facilitates a deeper understanding of the data and can reveal interesting patterns or correlations.
+
+**Plotting Multiple DataFrame Columns as Subplots**
+
+Let's explore an example to illustrate how to plot multiple DataFrame columns as subplots in pandas.
+
+**Example:**
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load the Titanic dataset
+url = "https://raw.githubusercontent.com/moscolitos/titanic-dataset/main/Titanic-Dataset.csv"
+titanic_df = pd.read_csv(url)
+
+# Select columns to plot
+columns_to_plot = ['Age', 'Fare', 'SibSp', 'Parch']
+
+# Plot multiple DataFrame columns as subplots
+fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(12, 8))
+
+for i, column in enumerate(columns_to_plot):
+    row_index = i // 2
+    col_index = i % 2
+    titanic_df[column].plot(ax=axes[row_index, col_index], kind='hist', title=column)
+    axes[row_index, col_index].set_xlabel(column)
+
+plt.tight_layout()
+plt.show()
+```
+
+**Output:**
+
+This code will generate a 2x2 grid of subplots, each representing a histogram of the specified DataFrame columns ('Age', 'Fare', 'SibSp', 'Parch').
+
+**Explanation:**
+
+- We start by loading the Titanic dataset into a DataFrame.
+- Next, we select the columns we want to plot ('Age', 'Fare', 'SibSp', 'Parch').
+- We then create a 2x2 grid of subplots using `plt.subplots(nrows=2, ncols=2)`. This function returns both the figure (`fig`) and axes (`axes`) objects.
+- Inside the loop, we iterate over each selected column and plot it as a histogram on the corresponding subplot using the `plot()` function. We specify the subplot axes using `ax=axes[row_index, col_index]`.
+- Finally, we adjust the layout of the subplots using `plt.tight_layout()` and display the plot with `plt.show()`.
+
+**Conclusion**
+
+By plotting multiple DataFrame columns as subplots, you can gain insights into the distribution and relationships between different variables in your dataset. This approach provides a comprehensive visualization of the data and facilitates exploratory data analysis.
+
+---
+Using pandas and matplotlib, you can easily plot multiple DataFrame columns as subplots, enabling you to visualize and analyze various variables within the same dataset effectively.
