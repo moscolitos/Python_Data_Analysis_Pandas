@@ -8,4 +8,4 @@ Welcome to the Pandas Tutorials repository! This collection of Jupyter notebooks
 
 Each link below corresponds to a Jupyter notebook that covers a particular aspect of Pandas:
 
-
+- [What is pandas, and what are its primary data structures?](moscolitos/Python_Data_Analysis_Pandas/jupyter notebooks/001_What_is_pandas,_and_what_are_its_primary_data_structures.ipynb)
